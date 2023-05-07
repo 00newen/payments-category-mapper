@@ -1,10 +1,16 @@
 version: 2.1
+
 jobs:
-  build:
+  build-app:
     docker:
-      - image: circleci/node:16
-    working_directory: ~/repo
+      - image: cimg/node:14.16-browsers
     steps:
       - checkout
       - run: yarn install
-      - run: yarn jest
+      - run: yarn build
+      - run: yarn test
+
+workflows:
+  build:
+    jobs:
+      - build-app
