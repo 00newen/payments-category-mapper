@@ -1,6 +1,5 @@
 import "./App.css";
 import CategoryTableRow from "./CategoryTableRow";
-import CategoryRow from "./CategoryRow";
 import React, { useState, useEffect } from "react";
 
 function PaymentsCategoryMapper() {
@@ -18,7 +17,7 @@ function PaymentsCategoryMapper() {
     "Groceries",
     "HomeUtilitiesAndDeco",
     "ChildrenClothingToys",
-    "HealthExoensesChildren",
+    "HealthExpensesChildren",
     "Transportation",
     "CoffeSnacks",
     "Lunch/DinnerOut",
@@ -50,14 +49,6 @@ function PaymentsCategoryMapper() {
             {paymentsCategories.map((category) => (
               <CategoryTableRow key={category} category={category} totalExpenses={0} />
             ))}
-            {data.map((categoryData) => (
-              <CategoryTableRow
-                key={categoryData.category}
-                category={categoryData.category}
-                totalExpenses={categoryData.amount}
-              />
-            ))}
-            <CategoryRow data={data} />
           </tbody>
         </table>
       </div>
