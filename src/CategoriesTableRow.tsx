@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface CategoryTableRowProps {
   category: string;
