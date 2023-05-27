@@ -1,4 +1,4 @@
-import React, { RefCallback, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CategoryTableRow from 'CategoriesTableRow';
 import { LocalStorageContext } from 'helpers/LocalStorageContext';
 
@@ -41,7 +41,8 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
       <table>
         <thead>
           <tr>
-            <th>Category</th>
+            <th>Remove</th>
+            <th>Category Name</th>
             <th>Total Expenses</th>
           </tr>
         </thead>
