@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { LocalStorageContext } from 'helpers/LocalStorageContext';
 import CategoriesTable from 'CategoriesTable';
 import './App.css';

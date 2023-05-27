@@ -4,22 +4,22 @@ const DEFAULT_CATEGORIES = [
   'Rent',
   'Insurance',
   'Spotify',
-  'HelloFresh',
-  'AsamiSchool',
-  'AsamiDanceClass',
-  'CleaningLady',
+  'Hello Fresh',
+  'Asami School',
+  'Asami Dance Class',
+  'Cleaning Lady',
   'Bunq',
   'Groceries',
-  'HomeUtilitiesAndDeco',
-  'ChildrenClothingToys',
-  'HealthExpensesChildren',
+  'Home Utilities And Deco',
+  'Children Clothing Toys',
+  'Health Expenses Children',
   'Transportation',
-  'CoffeSnacks',
-  'Lunch/DinnerOut',
-  'Lunch/DinnerTakeAway',
-  'ActivityOut',
+  'Coffe Snacks',
+  'Lunch/Dinner Out',
+  'Lunch/Dinner TakeAway',
+  'Activity Out',
   'Courses/Services',
-  'SharedGifts',
+  'Shared Gifts',
   'Other',
 ];
 
@@ -29,7 +29,10 @@ interface LocalStorageProviderProps {
 
 export const LocalStorageContext = createContext({
   paymentCategories: [],
-  setPaymentCategories: (paymentCategories: string[]) => {
+  removePaymentCategory: (removedCategory: string): void => {
+    console.log('thing', removedCategory);
+  },
+  setPaymentCategories: (paymentCategories: string[]): void => {
     localStorage.setItem('paymentCategories', JSON.stringify(paymentCategories));
   },
 });
@@ -46,8 +49,12 @@ export const LocalStorageProvider = ({ children }: LocalStorageProviderProps) =>
     localStorage.setItem('paymentCategories', JSON.stringify(paymentCategories));
   }, [paymentCategories]);
 
+  const removePaymentCategory = (removedCategory: string) => {
+    setPaymentCategories(paymentCategories.filter((category: string) => category !== removedCategory));
+  };
+
   return (
-    <LocalStorageContext.Provider value={{ paymentCategories, setPaymentCategories }}>
+    <LocalStorageContext.Provider value={{ paymentCategories, setPaymentCategories, removePaymentCategory }}>
       {children}
     </LocalStorageContext.Provider>
   );
