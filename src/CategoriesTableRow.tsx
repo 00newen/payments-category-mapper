@@ -10,7 +10,7 @@ const CategoryTableRow: React.FC<CategoryTableRowProps> = ({ category, totalExpe
   return (
     <tr>
       <td>
-        <button onClick={(e) => removeEntry(category)}>-</button>
+        <button onClick={() => removeEntry(category)}>-</button>
       </td>
       <td>{category}</td>
       <td>{totalExpenses}</td>

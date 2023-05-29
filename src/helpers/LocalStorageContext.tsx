@@ -39,7 +39,6 @@ export const LocalStorageContext = createContext({
 
 export const LocalStorageProvider = ({ children }: LocalStorageProviderProps) => {
   const [paymentCategories, setPaymentCategories] = useState(() => {
-    // Check if paymentCategories exist in localStorage
     const storedCategories = localStorage.getItem('paymentCategories');
     return storedCategories ? JSON.parse(storedCategories) : DEFAULT_CATEGORIES;
   });
