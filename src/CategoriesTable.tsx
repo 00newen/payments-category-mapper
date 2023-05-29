@@ -28,16 +28,6 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
 
   return (
     <div className='categories-table'>
-      <div className='add-payment'>
-        <input
-          type='text'
-          placeholder='Category Name'
-          value={newCategory}
-          onChange={(e) => setCategory(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={addPaymentCategory}>Add</button>
-      </div>
       <table>
         <thead>
           <tr>
@@ -55,6 +45,21 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
               removeEntry={removePaymentCategory}
             />
           ))}
+          <tr>
+            <th>
+              <button onClick={addPaymentCategory}>+</button>
+            </th>
+            <th>
+              <input
+                type='text'
+                placeholder='Category Name'
+                value={newCategory}
+                onChange={(e) => setCategory(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+            </th>
+            <th>-</th>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -46,7 +46,7 @@ const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData }) => 
 
   return (
     <>
-      <div>The imported file has {transactionsData.length + 1} TXs.</div>
+      <div>The imported file has {transactionsData.length} TXs.</div>
     </>
   );
 };
