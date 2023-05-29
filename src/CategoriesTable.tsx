@@ -14,7 +14,7 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
     if (newCategory == '') {
       return;
     }
-    console.log('adding cat?', newCategory);
+    // console.log('adding cat?', newCategory);
     categories.push(newCategory);
     setCategory('');
   };
