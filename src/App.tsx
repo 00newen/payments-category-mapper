@@ -33,13 +33,15 @@ function PaymentsCategoryMapper() {
 
   return (
     <div className='App'>
-      <header>
+      <header className='text-xl p-6 mx-auto bg-blue-500'>
         <h1>Payments Category Mapper</h1>
       </header>
-      <div className='file-importer'>
+      <div className='file-importer p-6 rounded-xl shadow-lg'>
         <input type={'file'} accept={'.csv'} onChange={handleOnChange} />
       </div>
-      <ImportedFile transactionsData={transactionsData}></ImportedFile>
+      <div className='p-6 m-6 rounded-xl border'>
+        <ImportedFile transactionsData={transactionsData}></ImportedFile>
+      </div>
       <div>
         <CategoriesTable categories={paymentCategories}></CategoriesTable>
       </div>
