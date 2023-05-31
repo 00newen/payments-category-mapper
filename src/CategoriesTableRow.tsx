@@ -8,7 +8,7 @@ interface CategoryTableRowProps {
 
 const CategoryTableRow: React.FC<CategoryTableRowProps> = ({ category, totalExpenses, removeEntry }) => {
   return (
-    <tr>
+    <tr className='even:bg-blue-100'>
       <td>
         <button onClick={() => removeEntry(category)}>-</button>
       </td>
