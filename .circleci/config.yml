@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-app:
     docker:
-      - image: cimg/node:14.16-browsers
+      - image: cimg/node:14.17-browsers
     steps:
       - checkout
       - run: yarn install
