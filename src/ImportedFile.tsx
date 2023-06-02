@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import SingleTransaction from 'SingleTransaction';
 
 interface ImportedFileInterface {
   transactionsData: string[][];
+  paymentCategories: string[];
 }
 
-const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData }) => {
+const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData, paymentCategories }) => {
   const [filteringColumn, setFilteringColumn] = useState(-1);
-  const [headers, setHeaders] = useState<string[]>();
-  // console.log('inside the file imported component:', transactionsData);
+  const [headers, setHeaders] = useState<string[]>([]);
 
   useEffect(() => {
-    if (transactionsData[0] && transactionsData[0] != undefined) {
+    if (transactionsData[0]) {
       const tArray = [];
       for (let i = 0; i < transactionsData[0].length; i++) {
         tArray.push(transactionsData[0][i]);
@@ -47,6 +48,17 @@ const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData }) => 
   return (
     <>
       <div>The imported file has {transactionsData.length} TXs.</div>
+      <div>
+        <h2 className='text-sm'>this should be a single tx:</h2>
+        <SingleTransaction headers={headers} transaction={transactionsData[1]}></SingleTransaction>
+        <div className='payment-categories'>
+          {paymentCategories.map((key: string, index: number) => (
+            <button className='border border-lg m-2 p-2 rounded-xl hover:bg-blue-50'>
+              {index}: {key}
+            </button>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

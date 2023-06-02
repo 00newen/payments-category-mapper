@@ -40,7 +40,7 @@ function PaymentsCategoryMapper() {
         <input type={'file'} accept={'.csv'} onChange={handleOnChange} />
       </div>
       <div className='p-6 m-6 rounded-xl border'>
-        <ImportedFile transactionsData={transactionsData}></ImportedFile>
+        <ImportedFile transactionsData={transactionsData} paymentCategories={paymentCategories}></ImportedFile>
       </div>
       <div>
         <CategoriesTable categories={paymentCategories}></CategoriesTable>
