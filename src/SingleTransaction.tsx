@@ -10,7 +10,7 @@ const SingleTransaction: React.FC<SingleTransactionInterface> = ({ headers, tran
     <div>
       {headers.length > 0 &&
         headers.map((key: string, index: number) => (
-          <div className='max-w-lg border rounded'>
+          <div key={key} className='max-w-lg border rounded'>
             {key}: <span>{transaction[index]}</span>
           </div>
         ))}

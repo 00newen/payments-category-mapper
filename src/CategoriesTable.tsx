@@ -1,20 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CategoryTableRow from 'CategoriesTableRow';
 import { LocalStorageContext } from 'helpers/LocalStorageContext';
 
 interface CategoryTableRowProps {
   categories: string[];
+  transactionsData: string[][];
 }
 
-const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
+const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories, transactionsData }) => {
   const [newCategory, setCategory] = useState('');
-  const { removePaymentCategory } = useContext(LocalStorageContext);
+  const { removePaymentCategory, getExistingFiltersForCategory } = useContext(LocalStorageContext);
+
+  useEffect(() => {
+    console.log('inside Categories Table.', transactionsData);
+  }, []);
 
   const addPaymentCategory = () => {
     if (newCategory == '') {
       return;
     }
-    // console.log('adding cat?', newCategory);
     categories.push(newCategory);
     setCategory('');
   };
@@ -26,8 +30,29 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
     }
   };
 
+  const getExpensesForCategory = (category: string) => {
+    const filters: string[] = getExistingFiltersForCategory(category);
+    // console.log('getting expenses for', category, filters);
+    let expenses = 0;
+
+    for (const transaction of transactionsData) {
+      const transactionFilter: string = transaction[6];
+      const transactionExpense: string = transaction[2];
+
+      for (const filter of filters) {
+        if (filter == transactionFilter) {
+          console.log('transactionExpense 1:', category, transactionFilter, transactionExpense);
+          expenses += parseFloat(transactionExpense);
+          console.log('found expense for', category, filter, parseFloat(transactionExpense), expenses);
+        }
+      }
+    }
+
+    return expenses;
+  };
+
   return (
-    <div className='categories-table'>
+    <div className='categories-table border rounded-xl p-6 m-6'>
       <table>
         <thead>
           <tr>
@@ -41,7 +66,7 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories }) => {
             <CategoryTableRow
               key={category}
               category={category}
-              totalExpenses={0}
+              totalExpenses={getExpensesForCategory(category)}
               removeEntry={removePaymentCategory}
             />
           ))}

@@ -30,10 +30,18 @@ interface LocalStorageProviderProps {
 export const LocalStorageContext = createContext({
   paymentCategories: [],
   removePaymentCategory: (removedCategory: string): void => {
-    console.log('thing', removedCategory);
+    console.log('thing ', removedCategory);
   },
   setPaymentCategories: (paymentCategories: string[]): void => {
     localStorage.setItem('paymentCategories', JSON.stringify(paymentCategories));
+  },
+  addFilterToCategory: (category: string, filter: string): void => {
+    console.log('adding filter', filter, 'to', category);
+  },
+  getExistingFiltersForCategory: (category: string): string[] => {
+    console.log('getting filters for', category);
+    const storedFilters = localStorage.getItem(category);
+    return storedFilters ? JSON.parse(storedFilters) : [category];
   },
 });
 
@@ -44,7 +52,6 @@ export const LocalStorageProvider = ({ children }: LocalStorageProviderProps) =>
   });
 
   useEffect(() => {
-    // Update localStorage whenever paymentCategories change
     localStorage.setItem('paymentCategories', JSON.stringify(paymentCategories));
   }, [paymentCategories]);
 
@@ -52,8 +59,38 @@ export const LocalStorageProvider = ({ children }: LocalStorageProviderProps) =>
     setPaymentCategories(paymentCategories.filter((category: string) => category !== removedCategory));
   };
 
+  const addFilterToCategory = (category: string, addedFilter: string) => {
+    const existingFilters = getExistingFiltersForCategory(category);
+    if (!filterAlreadyExists(existingFilters, addedFilter)) {
+      existingFilters.push(addedFilter);
+    }
+    console.log('got filters: ', existingFilters);
+    localStorage.setItem(category, JSON.stringify(existingFilters));
+  };
+  const filterAlreadyExists = (existingFilters: string[], addedFilter: string) => {
+    for (const filter of existingFilters) {
+      if (filter == addedFilter) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const getExistingFiltersForCategory = (category: string) => {
+    const storedFilters = localStorage.getItem(category);
+    return storedFilters ? JSON.parse(storedFilters) : [category];
+  };
+
   return (
-    <LocalStorageContext.Provider value={{ paymentCategories, setPaymentCategories, removePaymentCategory }}>
+    <LocalStorageContext.Provider
+      value={{
+        paymentCategories,
+        setPaymentCategories,
+        removePaymentCategory,
+        addFilterToCategory,
+        getExistingFiltersForCategory,
+      }}
+    >
       {children}
     </LocalStorageContext.Provider>
   );

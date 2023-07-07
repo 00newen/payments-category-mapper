@@ -25,7 +25,6 @@ function PaymentsCategoryMapper() {
     Papa.parse(file, {
       dynamicTyping: true,
       complete: (results: ParseResult<File>) => {
-        // console.log(results.data);
         setTransactionsData(results.data as []);
       },
     });
@@ -39,11 +38,11 @@ function PaymentsCategoryMapper() {
       <div className='file-importer p-6 rounded-xl shadow-lg'>
         <input type={'file'} accept={'.csv'} onChange={handleOnChange} />
       </div>
-      <div className='p-6 m-6 rounded-xl border'>
+      <div className='p-6 m-6 rounded-xl border relative'>
         <ImportedFile transactionsData={transactionsData} paymentCategories={paymentCategories}></ImportedFile>
       </div>
       <div>
-        <CategoriesTable categories={paymentCategories}></CategoriesTable>
+        <CategoriesTable categories={paymentCategories} transactionsData={transactionsData}></CategoriesTable>
       </div>
     </div>
   );
