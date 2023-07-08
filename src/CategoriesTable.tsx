@@ -36,12 +36,12 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories, transact
     let expenses = 0;
 
     for (const transaction of transactionsData) {
-      const transactionFilter: string = transaction[6];
+      const transactionFilter: string = transaction[6]; // TODO: update this so it's taking the dinamic filtering field instead of a hard coded index
       const transactionExpense: string = transaction[2];
 
       for (const filter of filters) {
+        console.log('transactionExpense 1:', category, '/', filter, '/', transactionFilter, transactionExpense);
         if (filter == transactionFilter) {
-          console.log('transactionExpense 1:', category, transactionFilter, transactionExpense);
           expenses += parseFloat(transactionExpense);
           console.log('found expense for', category, filter, parseFloat(transactionExpense), expenses);
         }

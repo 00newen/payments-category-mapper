@@ -26,8 +26,6 @@ const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData, payme
   }, [transactionsData]);
 
   const buttonClicked = (category: string) => {
-    console.log('button clicked:', category);
-    console.log('checking Tx:', transactionsData[txIndex][filteringColumn]);
     if (category != 'skip') {
       addFilterToCategory(category, transactionsData[txIndex][filteringColumn]);
     }
@@ -36,24 +34,18 @@ const ImportedFile: React.FC<ImportedFileInterface> = ({ transactionsData, payme
   const gotoNextTransaction = (txIndex: number) => {
     if (txIndex >= transactionsData.length) {
       setTxIndex(1);
-      console.log('txIndex:', 1);
     } else {
       setTxIndex(txIndex);
-      console.log('txIndex:', txIndex);
     }
   };
   const checkIfCurrentTxIsAlreadyMapped = (txIndex: number) => {
     if (transactionsFileAlreadyLoaded()) {
       const currentTxFilter: string = transactionsData[txIndex][filteringColumn];
-      console.log('running check on current TX', currentTxFilter);
 
       for (const category of paymentCategories) {
         const categoryFilters: string[] = getExistingFiltersForCategory(category);
-        console.log('category:', category, categoryFilters);
         for (const filter of categoryFilters) {
-          console.log(filter, '/', currentTxFilter);
           if (filter == currentTxFilter) {
-            console.log('### Found pre existing filter !!!', filter, '/', currentTxFilter);
             gotoNextTransaction(txIndex + 1);
           }
         }
