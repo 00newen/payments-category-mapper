@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import { LocalStorageProvider } from './helpers/LocalStorageContext';
-import ErrorPage from './error-page';
+import ErrorPage from './pages/error-page';
 import PaymentsCategoryMapper from './App';
 import Home from 'pages/Home';
 import Instructions from 'pages/Instructions';

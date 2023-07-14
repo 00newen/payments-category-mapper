@@ -30,16 +30,16 @@ interface LocalStorageProviderProps {
 export const LocalStorageContext = createContext({
   paymentCategories: [],
   removePaymentCategory: (removedCategory: string): void => {
-    console.log('thing ', removedCategory);
+    // console.log('thing ', removedCategory);
   },
   setPaymentCategories: (paymentCategories: string[]): void => {
     localStorage.setItem('paymentCategories', JSON.stringify(paymentCategories));
   },
   addFilterToCategory: (category: string, filter: string): void => {
-    console.log('adding filter', filter, 'to', category);
+    // console.log('adding filter', filter, 'to', category);
   },
   getExistingFiltersForCategory: (category: string): string[] => {
-    console.log('getting filters for', category);
+    // console.log('getting filters for', category);
     const storedFilters = localStorage.getItem(category);
     return storedFilters ? JSON.parse(storedFilters) : [category];
   },
@@ -64,7 +64,7 @@ export const LocalStorageProvider = ({ children }: LocalStorageProviderProps) =>
     if (!filterAlreadyExists(existingFilters, addedFilter)) {
       existingFilters.push(addedFilter);
     }
-    console.log('got filters: ', existingFilters);
+    // console.log('got filters: ', existingFilters);
     localStorage.setItem(category, JSON.stringify(existingFilters));
   };
   const filterAlreadyExists = (existingFilters: string[], addedFilter: string) => {

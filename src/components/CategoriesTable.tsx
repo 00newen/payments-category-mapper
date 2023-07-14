@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import CategoryTableRow from 'CategoriesTableRow';
+import CategoryTableRow from 'components/CategoriesTableRow';
 import { LocalStorageContext } from 'helpers/LocalStorageContext';
 
 interface CategoryTableRowProps {
@@ -12,7 +12,7 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories, transact
   const { removePaymentCategory, getExistingFiltersForCategory } = useContext(LocalStorageContext);
 
   useEffect(() => {
-    console.log('inside Categories Table.', transactionsData);
+    // console.log('inside Categories Table.', transactionsData);
   }, []);
 
   const addPaymentCategory = () => {
@@ -36,14 +36,14 @@ const CategoriesTable: React.FC<CategoryTableRowProps> = ({ categories, transact
     let expenses = 0;
 
     for (const transaction of transactionsData) {
-      const transactionFilter: string = transaction[6]; // TODO: update this so it's taking the dinamic filtering field instead of a hard coded index
+      const transactionFilter: string = transaction[6];
       const transactionExpense: string = transaction[2];
 
       for (const filter of filters) {
-        console.log('transactionExpense 1:', category, '/', filter, '/', transactionFilter, transactionExpense);
+        // console.log('transactionExpense 1:', category, '/', filter, '/', transactionFilter, transactionExpense);
         if (filter == transactionFilter) {
           expenses += parseFloat(transactionExpense);
-          console.log('found expense for', category, filter, parseFloat(transactionExpense), expenses);
+          // console.log('found expense for', category, filter, parseFloat(transactionExpense), expenses);
         }
       }
     }

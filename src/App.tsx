@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Route, Outlet, Link } from 'react-router-dom';
 import { LocalStorageContext } from 'helpers/LocalStorageContext';
 import Papa, { ParseResult } from 'papaparse';
-import CategoriesTable from 'CategoriesTable';
-import ImportedFile from 'ImportedFile';
+import CategoriesTable from 'components/CategoriesTable';
+import ImportedFile from 'components/ImportedFile';
 import './App.css';
 
 function PaymentsCategoryMapper() {
