@@ -1,14 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import { LocalStorageProvider } from './helpers/LocalStorageContext';
+import ErrorPage from './error-page';
+import PaymentsCategoryMapper from './App';
+import Home from 'pages/Home';
+import Instructions from 'pages/Instructions';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <PaymentsCategoryMapper />,
+    errorElement: <ErrorPage />,
+    children: [],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <LocalStorageProvider>
-      <App />
+      <RouterProvider router={router} />
     </LocalStorageProvider>
   </React.StrictMode>
 );
