@@ -13,7 +13,12 @@ const router = createBrowserRouter([
     path: '/',
     element: <PaymentsCategoryMapper />,
     errorElement: <ErrorPage />,
-    children: [],
+    children: [
+      {
+        path: 'instructions',
+        element: <Instructions />,
+      },
+    ],
   },
 ]);
 
