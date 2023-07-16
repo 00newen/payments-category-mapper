@@ -30,6 +30,22 @@ const Instructions: React.FC = () => {
         TXs to the same destination are of the same type is not helpful. That works for payments, but not for transfers.
       </p>
       <p>Something to keep in mind.</p>
+      <h2>Roadmap</h2>
+      <p>These are not in any specific order. It's just a list of features that I plan to include in the app.</p>
+      <div>
+        <ul>
+          <li>Remove/Change loaded file.</li>
+          <li>Change filtering column.</li>
+          <li>See list of filters for each Category.</li>
+          <li>See list of TXs filtered to each Category.</li>
+          <li>Remove/Change filter from/to another Category.</li>
+          <li>See list of unfiltered TXs.</li>
+          <li>
+            Add a DB implementation to store all TX. This one will change the way we handle all TXs, and will require a
+            big refactoring
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
