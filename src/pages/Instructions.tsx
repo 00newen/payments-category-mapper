@@ -30,6 +30,17 @@ const Instructions: React.FC = () => {
         TXs to the same destination are of the same type is not helpful. That works for payments, but not for transfers.
       </p>
       <p>Something to keep in mind.</p>
+      <h2>How to use this app:</h2>
+      <p>
+        In the HOME page. You need to load a CSV file and choose what column to use for filtering. After doing that you
+        will start seeing each TX in order. You can choose what Category each TX should be applied to. You can also skip
+        a TX in case you're not sure or want to deal with it later. Here you will also see a list of all Categories, you
+        can add or remove categories and you can also see the calculated expenses of each Category.
+      </p>
+      <p>
+        In the CATEGORY page to see a list of all TXs that are being filtered to the selected Category. In this page,
+        you can also find the list of filters that are being used for this Category.
+      </p>
       <h2>Roadmap</h2>
       <p>These are not in any specific order. It's just a list of features that I plan to include in the app.</p>
       <div>
